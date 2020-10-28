@@ -7,10 +7,10 @@ const _: any = null
 
 describe('about ts types', () => {
   it('1-should compile to plain javascript', () => {
-    let boolean; // _
-    let integer; // _
-    let float; // _
-    let foo; // _
+    let boolean : boolean = true; // _
+    let integer : number = 6; // _
+    let float : number = Math.PI; // _
+    let foo : string = 'bar'; // _
     expect(boolean).to.be.true;
     expect(integer).to.equal(6);
     expect(float).to.equal(Math.PI);
@@ -18,40 +18,45 @@ describe('about ts types', () => {
   });
 
   it('2-should type arrays', () => {
-    let list; // _
+    let list : number[] = [2,3] ; // _
     expect(list.length).to.equal(2);
   });
 
   it('3-should type tuples', () => {
-    let tupple; // _
+    let tupple : [number,string]= [42, 'foo']; // _
     expect(tupple[0]).to.equal(42);
     expect(tupple[1]).to.equal('foo');
   });
 
   it('4-should type enums', () => {
-    const myAwesomeEnum: any = null; // _
+   // const myAwesomeEnum: any = null; 
+
+    enum myAwesomeEnum { 
+      ACTIVE, TOTO, INACTIVE
+    }
+
     expect(myAwesomeEnum.ACTIVE).to.equal(0);
     expect(myAwesomeEnum[2]).to.equal('INACTIVE');
   });
 
   it('5-should type null and undefined', () => {
-    let nullVar; // _
-    let undefinedVar;
+    let nullVar: null = null; // _
+    let undefinedVar: undefined = undefined;
     expect(nullVar).to.be.null;
     expect(undefinedVar).to.be.undefined;
   });
 
   it('6-should work in functions arguments too', () => {
-    function sayHello(name) {
+    function sayHello(name:string) {
       return 'Hello '.concat(name);
     }
-    expect(sayHello('TypeScript')).to.equal( _ ); // replace the _
+    expect(sayHello('TypeScript')).to.equal( 'Hello TypeScript'); // replace the _
   });
 
   it('7-should infer the type', () => {
-    function add(a, b) {
+    function add(a :number, b:string) {
       return a + b;
     }
-    expect(add(17, '25')).to.equal( _ ); // replace the _
+    expect(add(17, '25')).to.equal( '17'+'25' ); // replace the _
   });
 });
